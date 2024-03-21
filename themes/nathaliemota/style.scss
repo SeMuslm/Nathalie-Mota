@@ -1,0 +1,73 @@
+/*
+Theme Name: Nathalie Mota
+Description: Ceci est un thème personnalisé pour la photographe Nathalie Mota
+Author: Franck A.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+
+// Les polices d'écritures en local
+
+@font-face {
+    font-family: 'SpaceMono';
+    src: url(./fonts/SpaceMono-BoldItalic.woff2) format('woff2');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SpaceMono';
+    src: url(./fonts/SpaceMono-Italic.woff2) format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SpaceMono';
+    src: url(./fonts/SpaceMono-Regular.woff2) format('woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'SpaceMono';
+    src: url(./fonts/SpaceMono-Bold.woff2) format('woff2');
+    font-weight: 700;
+}
+
+// Réglages généraux
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 28px 146px;
+    & > a{
+        display: flex;
+    }
+    & img{
+        object-fit: none;
+    }
+
+}
+header ul, footer ul{
+        display: flex;
+        gap: 48px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+}
+header li, footer li{
+        font-family: 'SpaceMono';
+        text-transform: uppercase;
+        font-size: 16px;
+}
+
+body, html{
+    margin: 0 !important;
+}
+
+a, a:visited{
+    text-decoration: none;
+    color: black;
+}
