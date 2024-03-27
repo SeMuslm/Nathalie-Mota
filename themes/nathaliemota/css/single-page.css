@@ -1,0 +1,112 @@
+.container-single {
+  display: flex;
+  flex-direction: column;
+  padding: 38px 146px 0;
+}
+.container-single__infos {
+  display: flex;
+  gap: 21px;
+}
+.container-single__infos--description, .container-single__infos--photo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.container-single__infos--description {
+  gap: 20px;
+  padding-bottom: 37px;
+  border-bottom: 2px solid black;
+}
+.container-single__infos--description > h2 {
+  max-width: 420px;
+}
+.container-single__infos--photo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.container-single figure {
+  margin: 0 0 0 21px;
+}
+.container-single__middle {
+  display: flex;
+  padding-bottom: 31px;
+  border-bottom: 2px solid black;
+}
+.container-single__middle--contact {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 37px;
+}
+.container-single__middle--contact button {
+  width: 272px;
+}
+.container-single__middle--carousel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.container-single__middle--carousel #carousel-image {
+  position: relative;
+}
+.container-single__middle--carousel #carousel-image > img {
+  position: absolute;
+  opacity: 0;
+  transition: all 1s linear;
+}
+.container-single__middle--carousel img, .container-single__middle--carousel #carousel-image {
+  margin-top: 8px;
+  width: 81px;
+  height: 71px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.container-single__recommandation {
+  padding: 77px 146px 109px;
+}
+.container-single__recommandation--images {
+  margin-top: 52px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.8%;
+}
+.container-single__recommandation #recommandation {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+}
+.container-single__recommandation #recommandation .hover_effect {
+  visibility: hidden;
+}
+.container-single__recommandation #recommandation .hover_effect .eye_icon, .container-single__recommandation #recommandation .hover_effect .fullscreen_icon {
+  position: absolute;
+}
+.container-single__recommandation #recommandation .hover_effect .eye_icon {
+  top: 50%;
+  left: 50%;
+  width: 7%;
+}
+.container-single__recommandation #recommandation .hover_effect .fullscreen_icon {
+  cursor: pointer;
+  width: 6%;
+  height: 7%;
+  top: 2%;
+  right: 3%;
+}
+
+.fleches {
+  padding-top: 19px;
+  width: 81px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#fleche-droite, #fleche-gauche {
+  font-size: 24px;
+}/*# sourceMappingURL=single-page.css.map */
