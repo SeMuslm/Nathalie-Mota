@@ -62,7 +62,7 @@ header li, footer li {
   font-size: 16px;
 }
 
-html, p, .wpcf7-response-output {
+body, html, p, .wpcf7-response-output {
   margin: 0 !important;
 }
 
