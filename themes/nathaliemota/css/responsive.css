@@ -7,8 +7,61 @@
     font-size: 46px;
     line-height: 48px;
   }
-  header ul {
+  #header_ul {
     display: none;
+  }
+  .menu-header-container {
+    position: relative;
+  }
+  .arriereblanc {
+    display: block;
+    content: "";
+    position: absolute;
+    background-color: white;
+    width: 100vw;
+    height: 65.95px;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  #menu_burger {
+    display: block;
+    cursor: pointer;
+  }
+  #menu_burger .menu_status {
+    position: relative;
+  }
+  #menu_burger .menu_status img, #menu_burger .menu_status input {
+    position: absolute;
+  }
+  #menu_burger .menu_status input {
+    width: 28px;
+    margin: 0;
+    height: 19px;
+    opacity: 0;
+  }
+  #menu_burger li {
+    font-size: 44px;
+  }
+  #menu_burger li > a {
+    color: white;
+  }
+  #menu_burger .menu_list {
+    position: absolute;
+    background-color: red;
+    width: 100vw;
+    height: 92vh;
+    top: 8vh;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: -5;
+  }
+  #menu_burger #menu_ul {
+    flex-direction: column;
+    align-items: center;
+    font-weight: 400;
   }
   .container-single {
     padding: 3vh 16vw 0;
@@ -68,5 +121,22 @@
     align-items: center;
     gap: 24px;
     margin: 5vh 0;
+  }
+  .modal-content {
+    max-width: 286px;
+  }
+  .modal-content input {
+    width: 190px;
+  }
+  .modal-content textarea {
+    width: 190px;
+    height: 149px;
+  }
+  .modal-content img {
+    max-height: 6.5vh;
+  }
+  .modal-content form {
+    margin-top: 14px;
+    margin-bottom: 24px;
   }
 }/*# sourceMappingURL=responsive.css.map */

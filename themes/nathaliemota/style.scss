@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 // Réglages généraux
 
-h1, h2, h3, .description, header li, footer li, #form-submit, #bouton-contact{
+h1, h2, h3, .description, header li, footer li, #form-submit, #bouton-contact, #menu_ul{
     font-family: 'SpaceMono';
     margin: 0;
 }
@@ -72,6 +72,13 @@ a, a:visited{
     color: black;
 }
 
+// HEADER //
+
+.arriereblanc{
+    display: none;
+}
+
+
 // MODALE
 
 .modal {
@@ -99,16 +106,16 @@ a, a:visited{
     align-items: center;
     overflow: hidden;
     & img{
-        max-height: 106px;
-        margin-top: 18px;
+        max-height: 11vh;
+        margin-top: 2vh;
     }
     & form{
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 2.5vh;
         text-transform: uppercase;
-        margin-top: 46px;
-        margin-bottom: 36px;
+        margin-top: 5.2vh;
+        margin-bottom: 4vh;
         width: min-content;
     }
     & p,label {
@@ -146,3 +153,9 @@ a, a:visited{
     border: 2px solid black !important;
     font-weight: 500;
 }
+
+.wpcf7-spinner{
+    display: none;
+}
+
+//
