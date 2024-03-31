@@ -10,9 +10,6 @@
     #header_ul{
         display: none;
     }
-    .menu-header-container{
-        position: relative;
-    }
     .arriereblanc{
         display: block;
         content: "";
@@ -49,8 +46,8 @@
             position: absolute;
             background-color: red;
             width: 100vw;
-            height: 92vh;
-            top: 8vh;
+            height: 93vh;
+            top: 7.6vh;
             left: 0;
             display: none;
             justify-content: center;
@@ -63,6 +60,62 @@
             font-weight: 400;
         }
     }
+
+
+    #single{
+        justify-content: center;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        margin-top: 0;
+        &-right{
+            padding: 20px 0;
+            order: -1;
+        }
+        &-right, &-left{
+            width: 72vw;
+        }
+        &-left{
+            &__desc{
+                border-bottom: unset;
+            }
+            &__contact{
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                justify-content: center;
+                position: relative;
+                &::before{
+                    content: "";
+                    width: 100vw;
+                    position: absolute;
+                    top: 0;
+                    left: -18vw;
+                    border-top: 2px solid black;
+                }
+            }
+        }
+    }
+
+#single-photos-apparentees{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 24px;
+}
+.photo-apparentee{
+    flex-direction: column;
+    margin: 0 !important;
+    gap: 21px;
+}
+.single-image{
+    width: 317px;
+    height: 278px;
+}
+
+#form-submit{
+    width: 190px;
+}
 
     .container-single{
         padding: 3vh 16vw 0;
@@ -84,14 +137,17 @@
             &--photo, &--description{
                 width: unset;
             }
-            &--description::after{
-                content: "";
-                position: absolute;
-                background-color: black;
-                width: 100vw;
-                height: 2px;
-                bottom: 0;
-                left: -16vw;
+            &--description{
+                border-bottom: unset;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    background-color: black;
+                    width: 100vw;
+                    height: 2px;
+                    bottom: 0;
+                    left: -16vw;
+                }
             }
         }
         &__middle{
@@ -140,5 +196,10 @@
             margin-bottom: 24px;
         }
     }
+
+#menu_icon{
+    transition: all 1s ease-in-out;
+}
+
 
 }

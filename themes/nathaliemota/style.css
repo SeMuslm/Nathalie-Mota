@@ -27,6 +27,8 @@ h2, h3, .description {
 h1 {
   font-weight: 700;
   font-size: 96px;
+  color: transparent;
+  -webkit-text-stroke: 2px white;
 }
 
 h2 {
@@ -62,12 +64,42 @@ header li, footer li {
   font-size: 16px;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3vh 9vw;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.03);
+  z-index: 200;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+header > a {
+  display: flex;
+}
+header img {
+  -o-object-fit: none;
+     object-fit: none;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  border-top: 2px solid black;
+}
+
+li:hover {
+  font-weight: 700;
+}
+
 body, html, p, .wpcf7-response-output {
   margin: 0 !important;
 }
 
 section {
-  max-width: 1440px;
+  max-width: 1148px;
   margin: auto;
 }
 
@@ -80,13 +112,34 @@ a, a:visited {
   display: none;
 }
 
+#menu_burger {
+  display: none;
+}
+
+#heroheader {
+  height: 962px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#heroheader img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#heroheader h1 {
+  position: absolute;
+}
+
 .modal {
   visibility: hidden;
   display: grid;
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
@@ -133,6 +186,7 @@ a, a:visited {
 }
 
 #form-submit, #bouton-contact {
+  width: 272px;
   height: 50px;
   font-size: 12px;
   background: #D8D8D8;
@@ -155,4 +209,157 @@ a, a:visited {
 
 .wpcf7-spinner {
   display: none;
+}
+
+.container-single {
+  display: flex;
+  flex-direction: column;
+}
+.container-single figure {
+  margin: 0 0 0 21px;
+}
+.container-single__middle {
+  display: flex;
+  padding-bottom: 31px;
+  position: relative;
+}
+.container-single__middle::after {
+  content: "";
+  position: absolute;
+  background-color: black;
+  width: 77vw;
+  height: 2px;
+  bottom: 0;
+}
+.container-single__middle--contact {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 37px;
+}
+.container-single__middle--contact button {
+  width: 272px;
+}
+.container-single__middle--carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.container-single__middle--carousel #carousel-image {
+  position: relative;
+}
+.container-single__middle--carousel #carousel-image > img {
+  position: absolute;
+  opacity: 0;
+  transition: all 1s linear;
+}
+.container-single__middle--carousel img, .container-single__middle--carousel #carousel-image {
+  width: 81px;
+  height: 71px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#single {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  -moz-column-gap: 21px;
+       column-gap: 21px;
+  margin-top: 38px;
+}
+#single-left, #single-right, #single-left__contact, #single-left__desc {
+  display: flex;
+}
+#single-left, #single-left__desc, #single-right {
+  flex-direction: column;
+}
+#single-left {
+  justify-content: flex-end;
+}
+#single-left__desc {
+  gap: 2vh;
+  border-bottom: 2px solid black;
+  padding-bottom: 3vh;
+}
+#single-left__desc > h2 {
+  width: -moz-min-content;
+  width: min-content;
+}
+#single-left__contact {
+  align-items: center;
+  justify-content: space-between;
+  height: 118px;
+}
+#single-right {
+  align-items: flex-end;
+}
+#single-right__photo {
+  width: 100%;
+}
+
+#single-photos-apparentees {
+  border-top: 2px solid black;
+  padding-top: 8.2vh;
+}
+#single-photos-apparentees .photo-apparentee {
+  display: flex;
+  justify-content: space-between;
+  margin: 5.3vh 0 12vh;
+}
+
+.fleches {
+  width: 81px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#fleche-droite, #fleche-gauche {
+  font-size: 24px;
+}
+
+.single-image {
+  width: 564px;
+  height: 495px;
+}
+.single-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes menu_opening {
+  from {
+    transform: translateY(-1000px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+@keyframes menu_closing {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-1000px);
+  }
 }/*# sourceMappingURL=style.css.map */
