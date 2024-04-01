@@ -3,7 +3,7 @@ get_header();
 while (have_posts()) :
     the_post();
 
-    $posts = get_posts(array( //Tableau des posts du CPT photos avec ordre croissant en années
+    $posts_photo = get_posts(array( //Tableau des posts du CPT photos avec ordre croissant en années
         'posts_per_page' => -1,
         'post_type' => 'photos',
         'orderby' => 'date',
@@ -13,19 +13,19 @@ while (have_posts()) :
 
     // Récupère le post actuel
     $current_post_id = get_the_ID();
-    $current_post_index = array_search($current_post_id, array_column($posts, 'ID'));
+    $current_post_index = array_search($current_post_id, array_column($posts_photo, 'ID'));
 
     // Récupère l'identifiant du thumbnail du post actuel et le définit dans un format large
     $thumbnail_id = get_post_thumbnail_id();
     $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'large');
 
     // Compte dans le tableau le post juste avant et récupère
-    $previous_post_index = ($current_post_index > 0) ? $current_post_index - 1 : count($posts) - 1;
-    $previous_post = $posts[$previous_post_index];
+    $previous_post_index = ($current_post_index > 0) ? $current_post_index - 1 : count($posts_photo) - 1;
+    $previous_post = $posts_photo[$previous_post_index];
 
     // Récupérer le post suivant
-    $next_post_index = ($current_post_index < count($posts) - 1) ? $current_post_index + 1 : 0;
-    $next_post = $posts[$next_post_index];
+    $next_post_index = ($current_post_index < count($posts_photo) - 1) ? $current_post_index + 1 : 0;
+    $next_post = $posts_photo[$next_post_index];
 
     // Récupérer l'ID du post précédent
     $previous_post_id = get_previous_post() ? get_previous_post()->ID : '';
@@ -36,7 +36,7 @@ while (have_posts()) :
 
     // Optimisation de la navigation en répértoriant uniquement le post précédent et le prochain post
     $posts_exclu = array();
-    foreach($posts as $postexclu){
+    foreach($posts_photo as $postexclu){
         if($postexclu->ID != $previous_post->ID && $postexclu->ID != $next_post->ID) {
             $posts_exclu[] = $postexclu->ID;
         }
@@ -92,9 +92,39 @@ while (have_posts()) :
 
 
     <div id="single-photos-apparentees">
+
         <h3>Vous aimerez aussi</h3>
         <div class="photo-apparentee">
-            <?php get_template_part('templates_part/photo_block')?>
+            <!-- <?php get_template_part('templates_part/photo_block')?> -->
+            <?php
+            $current_post_id = get_the_ID();
+
+            $terms_categories = array();
+            $taxonomies = get_the_terms(get_the_ID(), 'categorie');
+            
+            if ($taxonomies && !is_wp_error($taxonomies)) {
+                foreach ($taxonomies as $term) {
+            
+                    $terms_categories[]= $term->name;
+                }
+            }
+            
+            $posts = get_posts(array( //Tableau des posts du CPT photos avec une ordre catégorie
+                'post_type' => 'photos',        
+                'posts_per_page' => 2,
+                'orderby' => 'rand',
+                'tax_query' => [
+                    [
+                    'taxonomy' => 'categorie',
+                    'field'    => 'slug',
+                    'terms'    => $terms_categories
+                    ]
+                ],
+                'exclude' => array($current_post_id) // Exclure le post actuel de la boucle
+            ));
+            
+            echo get_template_part('templates_part/photo_block');
+            ?>
         </div>
     </div>
 

@@ -133,6 +133,15 @@ a, a:visited {
   position: absolute;
 }
 
+#liste_photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  grid-gap: 20px;
+}
+
 .modal {
   visibility: hidden;
   display: grid;

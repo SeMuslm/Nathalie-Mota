@@ -130,6 +130,16 @@ a, a:visited{
     }
 }
 
+// LISTE PHOTOS ACCUEIL //
+
+#liste_photos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: fit-content;
+    grid-gap: 20px;
+}
+
 // MODALE //
 
 .modal {
