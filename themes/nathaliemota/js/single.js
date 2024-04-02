@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var modal = document.getElementById('myModal');
     var btn = document.getElementById("menu-item-28");
-    var btnphoto = document.getElementById("bouton-contact");
+    var btnphoto = document.querySelector(".bouton-contact")
     
     btn.onclick = function() {
         modal.style.visibility = "visible";

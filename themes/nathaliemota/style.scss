@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 // Réglages généraux
 
-h1, h2, h3, .description, header li, footer li, #form-submit, #bouton-contact, #menu_ul{
+h1, h2, h3, .description, header li, footer li, #form-submit, .bouton-contact, #menu_ul{
     font-family: 'SpaceMono';
     margin: 0;
 }
@@ -82,7 +82,7 @@ footer{
     padding-top: 8px;
     border-top: 2px solid black;
 }
-li:hover{
+li:hover {
     font-weight: 700;
 }
 
@@ -130,8 +130,15 @@ a, a:visited{
     }
 }
 
-// LISTE PHOTOS ACCUEIL //
+// MAIN MENU //
 
+#main-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin: 79px 0 40px;
+}
 #liste_photos{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -194,7 +201,7 @@ a, a:visited{
     }
 
 }
-#form-submit, #bouton-contact{
+#form-submit, .bouton-contact{
     width: 272px;
     height: 50px;
     font-size: 12px;
@@ -205,7 +212,7 @@ a, a:visited{
     cursor: pointer;
 
 }
-#form-submit:hover, #bouton-contact:hover{
+#form-submit:hover, .bouton-contact:hover{
     color: white;
     background-color: black;
     transition: all 0.5s linear;

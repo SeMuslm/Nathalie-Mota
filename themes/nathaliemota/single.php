@@ -1,7 +1,5 @@
 <?php
 get_header();
-while (have_posts()) :
-    the_post();
 
     $posts_photo = get_posts(array( //Tableau des posts du CPT photos avec ordre croissant en années
         'posts_per_page' => -1,
@@ -72,7 +70,7 @@ while (have_posts()) :
 
         <div id="single-left__contact">
             <p>Cette photo vous intéresse ?</p>
-            <button id="bouton-contact" data-reference="<?php the_field('reference')?>">Contact</button> <!-- Le bouton stock la référence de la photo -->  
+            <button class="bouton-contact" data-reference="<?php the_field('reference')?>">Contact</button> <!-- Le bouton stock la référence de la photo -->  
         </div>
         
         <div class="container-single__middle--carousel">
@@ -95,9 +93,7 @@ while (have_posts()) :
 
         <h3>Vous aimerez aussi</h3>
         <div class="photo-apparentee">
-            <!-- <?php get_template_part('templates_part/photo_block')?> -->
             <?php
-            $current_post_id = get_the_ID();
 
             $terms_categories = array();
             $taxonomies = get_the_terms(get_the_ID(), 'categorie');
@@ -109,21 +105,29 @@ while (have_posts()) :
                 }
             }
             
-            $posts = get_posts(array( //Tableau des posts du CPT photos avec une ordre catégorie
+            $post_actuel = get_queried_object_id();
+            $posts = new WP_Query(array(
                 'post_type' => 'photos',        
                 'posts_per_page' => 2,
                 'orderby' => 'rand',
-                'tax_query' => [
-                    [
-                    'taxonomy' => 'categorie',
-                    'field'    => 'slug',
-                    'terms'    => $terms_categories
-                    ]
-                ],
-                'exclude' => array($current_post_id) // Exclure le post actuel de la boucle
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'categorie',
+                        'field'    => 'slug',
+                        'terms'    => $terms_categories
+                    )
+                ),
+                'post__not_in' => array($post_actuel)
             ));
-            
-            echo get_template_part('templates_part/photo_block');
+
+            if($posts->have_posts()) :
+                while($posts->have_posts()) :
+                    $posts->the_post();
+                    if(has_post_thumbnail()){
+                        echo get_template_part('templates_part/photo_block');
+                    };
+                endwhile;
+            endif;
             ?>
         </div>
     </div>
@@ -131,7 +135,6 @@ while (have_posts()) :
 </section>
 
 <?php 
-endwhile;
 get_footer();
 
 ?>
