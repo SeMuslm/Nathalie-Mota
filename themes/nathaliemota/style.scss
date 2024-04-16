@@ -9,7 +9,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 // Réglages généraux
 
-h1, h2, h3, .description, header li, footer li, #form-submit, .bouton-contact, #menu_ul{
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, .description, header li, footer li, #form-submit, .bouton-contact, .bouton-contact-tri, #menu_ul{
     font-family: 'SpaceMono';
     margin: 0;
 }
@@ -109,8 +115,6 @@ a, a:visited{
     display: none;
 }
 
-
-
 // HERO HEADER //
 
 #heroheader{
@@ -126,7 +130,6 @@ a, a:visited{
     }
     & h1{
         position: absolute;
-        
     }
 }
 
@@ -146,6 +149,154 @@ a, a:visited{
     width: fit-content;
     grid-gap: 20px;
 }
+
+
+#select-container{
+    display: flex;
+    width: 100%;
+    &-left{
+        display: flex;
+        flex-direction: inherit;
+        justify-content: space-between;
+        width: 48%;
+    }
+    &-right{
+        display: flex;
+        flex-direction: inherit;
+        justify-content: flex-end;
+        width: 52%;
+    }
+    .select-container__filtre{
+        position: relative;
+        width: 260px;
+        height: 42px;
+        & > label{
+            position: absolute;
+            z-index: 1;
+            padding: 12px 0 12px 18px;
+            font-weight: 500;
+            font-size: 12px;
+            color: #313144;
+            text-transform: uppercase;
+        }
+    }
+    & select {
+        width: 260px;
+        height: 42px;
+        border: 1.3px solid #B8BBC2;
+        border-radius: 8px;
+        font-family: 'Poppins';
+        font-weight: 500;
+        font-size: 12px;
+        padding: 0 18px;
+        text-transform: uppercase;
+        position: relative;
+    }
+    & option{
+        text-transform: none;
+    }
+}
+
+.fa-solid{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: fit-content;
+    height: 100%;
+    padding: 0 18px;
+    display: flex !important;
+    align-items: center;
+}
+.fa-chevron-up{
+    opacity: 0;
+}
+select{
+    appearance: none !important;
+}
+
+// SELECT 2
+
+.select2-dropdown{
+    border: none !important;
+}
+.select2-selection{
+    display: flex !important;
+    align-items: center !important;
+    width: 260px;
+    height: 42px !important;
+    border: 1.3px solid #B8BBC2 !important;
+    border-radius: 8px !important;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    &__rendered{
+        padding-left: 18px !important;
+    }
+} 
+
+.select2-container--open .select2-selection{
+    border-radius: 8px 8px 0 0 !important;
+}
+#select2-categories-select-results, #select2-formats-select-results, #select2-tri-select-results{
+    animation: filter_oppening 0.5s forwards;
+    &::-webkit-scrollbar{ // Cacher le scrollbar
+        display: none;
+    }
+}
+.select2-results__option {
+    height: 30px;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 12px;
+    color: #313144 !important;
+    transition: all 0.3s;
+    &:hover{
+        background-color: #FFD6D6 !important;
+    }
+    &:active{
+        background-color: #FE5858 !important;
+    }
+    &--selectable{
+        background-color: white !important;
+    }
+}
+.select2-results__option--selected{
+    color: white !important;
+    background-color: #E00000 !important;
+}
+
+.select2-search--dropdown{
+    display: none !important;
+}
+
+.select2-selection__arrow{
+    display: flex;
+    align-items: center;
+    margin-right: 18px;
+    height: 95% !important;
+    width: unset !important;
+}
+
+.select2-container .select2-selection__arrow::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f078";
+    font-weight: 900;
+    font-size: 14px;
+}
+
+/* Stylisation de l'icône de fermeture */
+.select2-container--open .select2-selection__arrow::before {
+    content: "\f077";
+}
+.select2-container--default .select2-results__option[aria-disabled=true] {
+    display: none;
+}
+
+b{
+    display: none !important;
+}
+
 
 // MODALE //
 
@@ -201,7 +352,7 @@ a, a:visited{
     }
 
 }
-#form-submit, .bouton-contact{
+#form-submit, .bouton-contact, .bouton-contact-tri{
     width: 272px;
     height: 50px;
     font-size: 12px;
@@ -210,9 +361,12 @@ a, a:visited{
     border-color: transparent;
     transition: all 0.5s linear;
     cursor: pointer;
-
 }
-#form-submit:hover, .bouton-contact:hover{
+
+.bouton-contact-tri{
+    display: none;
+}
+#form-submit:hover, .bouton-contact:hover, .bouton-contact-tri:hover{
     color: white;
     background-color: black;
     transition: all 0.5s linear;
@@ -298,7 +452,7 @@ a, a:visited{
             border-bottom: 2px solid black;
             padding-bottom: 3vh;
             & > h2{
-                width: min-content;
+                width: 66%;
             }
         }
         &__contact{
@@ -362,17 +516,41 @@ a, a:visited{
 }
 @keyframes menu_opening{
     from{
-        transform: translateY(-1000px);
+        transform: translateX(1000px);
     }
     to{
-        transform: translateY(0px);
+        transform: translateX(0px);
     }
 }
 @keyframes menu_closing{
     from{
-        transform: translateY(0px);
+        transform: translateX(0px);
     }
     to{
-        transform: translateY(-1000px);
+        transform: translateX(1000px);
+    }
+}
+@keyframes filter_oppening {
+    from {
+        max-height: 0px;
+      }
+      to {
+        max-height: 200px;
+      }
+}
+@keyframes arrow_openning{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(180deg);
+    }
+}
+@keyframes arrow_closing{
+    0%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(0deg);
     }
 }

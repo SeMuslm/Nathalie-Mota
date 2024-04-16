@@ -60,6 +60,29 @@
     align-items: center;
     font-weight: 400;
   }
+  #heroheader {
+    height: 253px;
+  }
+  #heroheader > h1 {
+    -webkit-text-stroke: 0.86px white;
+  }
+  #main-menu {
+    margin: 28px 0 39px;
+  }
+  #liste_photos {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #select-container {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+  #select-container-left, #select-container-right {
+    gap: 8px;
+    width: unset;
+  }
   #single {
     justify-content: center;
     grid-template-columns: 1fr;

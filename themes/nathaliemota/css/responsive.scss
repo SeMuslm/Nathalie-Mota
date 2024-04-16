@@ -61,7 +61,33 @@
         }
     }
 
+// ACCUEIL //
 
+#heroheader{
+    height: 253px;
+    & > h1{
+        -webkit-text-stroke: 0.86px white;
+    }
+}
+#main-menu{
+    margin: 28px 0 39px;
+}
+#liste_photos{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+#select-container{
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    &-left, &-right{
+        gap: 8px;
+        width: unset;
+    }
+}
+
+// SINGLE //
     #single{
         justify-content: center;
         grid-template-columns: 1fr;
@@ -116,7 +142,6 @@
 #form-submit{
     width: 190px;
 }
-
     .container-single{
         padding: 3vh 16vw 0;
         &__recommandation{

@@ -127,6 +127,9 @@ get_header();
                         echo get_template_part('templates_part/photo_block');
                     };
                 endwhile;
+            else: ?>
+            <p class="description" style="display: flex, justify-content: center">Il n'y a actuellement aucun post similaire à celui que vous avez consulté.</p>
+            <?
             endif;
             ?>
         </div>
