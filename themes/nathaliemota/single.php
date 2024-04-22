@@ -53,7 +53,6 @@ get_header();
 
     <div id="single">
         <div id="single-left">
-
             <div id="single-left__desc">
                 <h2><?php the_title(); ?></h2>
                 <p class="description">Référence : <?php the_field('reference'); ?></p>

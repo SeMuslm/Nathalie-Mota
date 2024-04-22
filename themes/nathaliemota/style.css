@@ -202,22 +202,6 @@ a, a:visited {
   text-transform: none;
 }
 
-.fa-solid {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: 100%;
-  padding: 0 18px;
-  display: flex !important;
-  align-items: center;
-}
-
-.fa-chevron-up {
-  opacity: 0;
-}
-
 select {
   -webkit-appearance: none !important;
      -moz-appearance: none !important;
@@ -500,15 +484,130 @@ b {
   font-size: 24px;
 }
 
+.lightbox__preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.lightbox__preview i {
+  position: absolute;
+  color: white;
+  font-size: 36px;
+}
+.lightbox__preview--reference, .lightbox__preview--categorie {
+  position: absolute;
+  bottom: 0;
+  padding: 12px 17px;
+  color: white;
+}
+.lightbox__preview--categorie {
+  right: 0;
+}
+
+.fa-eye {
+  top: 47%;
+  right: 47%;
+}
+
+.fa-expand {
+  right: 0;
+  margin: 11px 18px 0 0;
+  border: 10px solid black;
+  border-radius: 50%;
+  background: black;
+  font-size: 20px !important;
+}
+
 .single-image {
   width: 564px;
   height: 495px;
+  position: relative;
 }
 .single-image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.single-image:hover .lightbox__preview {
+  opacity: 1;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox img {
+  width: 100%;
+}
+.lightbox__content {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+}
+.lightbox__content--infos {
+  display: flex;
+  justify-content: space-between;
+}
+.lightbox__content--reference, .lightbox__content--categorie {
+  color: white;
+}
+.lightbox__content--image {
+  overflow: auto;
+  max-height: 80vh;
+}
+.lightbox__content--image::-webkit-scrollbar {
+  display: none;
+}
+.lightbox__close {
+  font-size: 22px;
+  right: 7%;
+  top: 12%;
+}
+.lightbox__prev, .lightbox__next, .lightbox__close {
+  position: absolute;
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+}
+.lightbox__prev, .lightbox__next {
+  top: 50vh;
+}
+.lightbox__prev::before, .lightbox__next::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 25px;
+}
+.lightbox__prev:hover, .lightbox__next:hover {
+  font-weight: 700;
+}
+.lightbox__prev {
+  left: 43px;
+}
+.lightbox__prev::before {
+  content: "\f177";
+}
+.lightbox__next {
+  right: 43px;
+  flex-direction: row-reverse;
+}
+.lightbox__next::before {
+  content: "\f178";
 }
 
 @keyframes fadeIn {
