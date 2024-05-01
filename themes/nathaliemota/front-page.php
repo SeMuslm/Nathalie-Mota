@@ -7,7 +7,7 @@ $heroheader = new WP_Query(array( // WP QUERY POUR LE HERO
     'orderby' => 'rand',
 ));
 
-$posts = new WP_query(array( // WP QUERY POUR LES POSTS
+$posts = new WP_query(array( // WP QUERY POUR LES POSTS RÉCENTS
     'post_type' => 'photos',
     'posts_per_page' => 8,
     'orderby' => 'date',
@@ -25,31 +25,42 @@ $formats_terms = get_terms(array( // RÉCUPÈRE LES TERMS DE FORMATS
 ?>
 
 <main>
-    <div id="heroheader">
+    <div id="heroheader"> <!-- LE HERO !-->
         <h1>Photographe Event</h1>
         <?php if($heroheader->have_posts()){
                 $heroheader->the_post();
                 $hero_thumbnail = get_post_thumbnail_id();
-                $hero_thumbnail_url = wp_get_attachment_image_src($hero_thumbnail, 'full'); ?>
-                <img src="<?php echo $hero_thumbnail_url[0] ?>" alt="<?php the_title(); ?>">            
+                $hero_thumbnail_url = wp_get_attachment_image_src($hero_thumbnail, 'full');
+                $hero_thumbnail_url_desktop = wp_get_attachment_image_src($hero_thumbnail, 'large');
+                $hero_thumbnail_url_tablette = wp_get_attachment_image_src($hero_thumbnail, 'tablette');
+                $hero_thumbnail_url_smartphone = wp_get_attachment_image_src($hero_thumbnail, 'smartphone');
+                ?>
+                <img
+                src="<?php echo $hero_thumbnail_url[0] ?>"
+                srcset="
+                <?php echo $hero_thumbnail_url_smartphone[0] ?> 425w,
+                <?php echo $hero_thumbnail_url_tablette[0] ?> 768w,
+                <?php echo $hero_thumbnail_url_desktop[0] ?> 1024w,
+                <?php echo $hero_thumbnail_url[0] ?> 1440w"
+                sizes="(max-width: 1440px) 50vw, 1440px"
+                alt="<?php the_title(); ?>" >
         <?php } ?>
     </div>
 
     <section>
         <div id="main-menu">
-            <div id="select-container">
+            <div id="select-container"> <!-- LES FILTRES !-->
                 <div id="select-container-left">
-                    <div class="select-container__filtre">
-                        <select name="categories" id="categories-select">
-                            <option disabled >Catégories</option>
-                            <option selected value="categories"></option>
+                    <div class="select-container__filtre"> <!-- FILTRE CATEGORIE !-->
+                        <select name="categories" id="categories-select"> 
+                            <option selected hidden value="categories">Catégories</option>
                             <?php 
                             foreach($categories_terms as $term){ ?>
                                 <option value="<?php echo $term->slug; ?>"><?php echo $term->name; ?></option>
                             <?php } ?>
                         </select>  
                     </div>
-                    <div class="select-container__filtre">
+                    <div class="select-container__filtre"> <!-- FILTRE FORMAT !-->
                         <select name="formats" id="formats-select">
                             <option disabled selected value='formats'>formats</option>
                             <?php 
@@ -59,8 +70,7 @@ $formats_terms = get_terms(array( // RÉCUPÈRE LES TERMS DE FORMATS
                         </select>
                     </div>
                 </div>
-
-                <div id="select-container-right">
+                <div id="select-container-right"> <!-- FILTRE DATE !-->
                     <div class="select-container__filtre">
                         <select name="tri" id="tri-select">
                             <option disabled selected>Trier par</option>
@@ -71,20 +81,20 @@ $formats_terms = get_terms(array( // RÉCUPÈRE LES TERMS DE FORMATS
                 </div>
 
             </div>
-            <div id="liste_photos">
+
+            <div id="liste_photos"> <!-- LES POSTS !-->
                 <?php
-                        if( $posts->have_posts() ) : 
-                            while( $posts->have_posts() ) : 
-                                $posts->the_post();
-                                if(has_post_thumbnail()){
-                                    echo get_template_part('templates_part/photo_block');
-                        }
+                    if( $posts->have_posts() ) : 
+                        while( $posts->have_posts() ) : 
+                            $posts->the_post();
+                            if(has_post_thumbnail()){
+                                echo get_template_part('templates_part/photo_block');
+                            }
                         endwhile;
                     endif; 
                 ?>
             </div>
             <button class="bouton-contact">Charger plus</button>
-            <?php get_template_part('templates_part/tri') ?>
         </div>
     </section>
 </main>

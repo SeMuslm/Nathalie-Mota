@@ -8,7 +8,7 @@ $cross = get_template_directory_uri() . '/images/Icons/Cross.png';
 <div id="menu_burger">
     <div class="menu_status">
         <img id="menu_icon" src="<?php echo $burger?>" alt="Menu en forme de burger">      
-        <input id="menu_checkbox" type="checkbox">  
+        <input aria-label="Checkbox menu burger" id="menu_checkbox" type="checkbox">  
     </div>
 
     <div class="menu_list">

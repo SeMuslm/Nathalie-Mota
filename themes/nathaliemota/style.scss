@@ -9,6 +9,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 // Réglages généraux
 
+@mixin Poppins{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 12px;
+}
+
 *,
 *::before,
 *::after {
@@ -32,7 +38,7 @@ h2, h3, .description{
 
 h1{
     font-weight: 700;
-    font-size: 96px;
+    font-size: clamp(0.75rem, 0.20rem + 5.8333vw, 6rem) !important;
     color: transparent;
     -webkit-text-stroke: 2px white;
 }
@@ -109,9 +115,6 @@ a, a:visited{
 
 // HEADER //
 
-.arriereblanc{
-    display: none;
-}
 #menu_burger{
     display: none;
 }
@@ -147,10 +150,11 @@ a, a:visited{
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    width: fit-content;
+    width: 100%;
     grid-gap: 20px;
 }
 
+// SELECT 2 //
 
 #select-container{
     display: flex;
@@ -158,8 +162,8 @@ a, a:visited{
     &-left{
         display: flex;
         flex-direction: inherit;
-        justify-content: space-between;
         width: 48%;
+        gap: 36px;
     }
     &-right{
         display: flex;
@@ -167,41 +171,10 @@ a, a:visited{
         justify-content: flex-end;
         width: 52%;
     }
-    .select-container__filtre{
-        position: relative;
-        width: 260px;
-        height: 42px;
-        & > label{
-            position: absolute;
-            z-index: 1;
-            padding: 12px 0 12px 18px;
-            font-weight: 500;
-            font-size: 12px;
-            color: #313144;
-            text-transform: uppercase;
-        }
-    }
     & select {
         width: 260px;
-        height: 42px;
-        border: 1.3px solid #B8BBC2;
-        border-radius: 8px;
-        font-family: 'Poppins';
-        font-weight: 500;
-        font-size: 12px;
-        padding: 0 18px;
-        text-transform: uppercase;
-        position: relative;
-    }
-    & option{
-        text-transform: none;
     }
 }
-select{
-    appearance: none !important;
-}
-
-// SELECT 2
 
 .select2-dropdown{
     border: none !important;
@@ -209,23 +182,20 @@ select{
 .select2-selection{
     display: flex !important;
     align-items: center !important;
-    width: 260px;
     height: 42px !important;
     border: 1.3px solid #B8BBC2 !important;
     border-radius: 8px !important;
-    font-family: 'Poppins';
-    font-weight: 500;
-    font-size: 12px;
+    @include Poppins;
     text-transform: uppercase;
     &__rendered{
         padding-left: 18px !important;
     }
 } 
 
-.select2-container--open .select2-selection{
+.select2-container--open .select2-selection{ // BORDURE DE LA LISTE DES OPTIONS
     border-radius: 8px 8px 0 0 !important;
 }
-#select2-categories-select-results, #select2-formats-select-results, #select2-tri-select-results{
+#select2-categories-select-results, #select2-formats-select-results, #select2-tri-select-results{ // LISTE DES OPTIONS
     animation: filter_oppening 0.5s forwards;
     &::-webkit-scrollbar{ // Cacher le scrollbar
         display: none;
@@ -233,11 +203,8 @@ select{
 }
 .select2-results__option {
     height: 30px;
-    font-family: 'Poppins';
-    font-weight: 500;
-    font-size: 12px;
+    @include Poppins;
     color: #313144 !important;
-    transition: all 0.3s;
     &:hover{
         background-color: #FFD6D6 !important;
     }
@@ -340,7 +307,7 @@ b{
 
 }
 #form-submit, .bouton-contact, .bouton-contact-tri{
-    width: 272px;
+    width: 263px;
     height: 50px;
     font-size: 12px;
     background: #D8D8D8;
@@ -370,56 +337,6 @@ b{
 
 // SINGLE PAGE //
 
-.container-single {
-    display: flex;
-    flex-direction: column;
-    & figure{
-        margin: 0 0 0 21px;
-    }
-    &__middle{
-        display: flex;
-        padding-bottom: 31px;
-        position: relative;
-        &::after{
-            content: "";
-            position: absolute;
-            background-color: black;
-            width: 77vw;
-            height: 2px;
-            bottom: 0;
-        }
-        &--contact{
-            width: 50%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 37px;
-            & button{
-                width: 272px;
-            }
-        }
-        &--carousel{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            #carousel-image{
-                position: relative;
-                > img{
-                    position: absolute;
-                    opacity: 0;
-                    transition: all 1s linear;
-                }
-            }
-            & img, #carousel-image{
-                width: 81px;
-                height: 71px;
-                object-fit: cover;
-            }
-        }
-    }
-}
-
 #single{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -435,6 +352,7 @@ b{
     &-left{
         justify-content: flex-end;
         &__desc{
+            position: relative;
             gap: 2vh;
             border-bottom: 2px solid black;
             padding-bottom: 3vh;
@@ -452,6 +370,27 @@ b{
         align-items: flex-end;
         &__photo{
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-carousel{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        #carousel-image{
+            position: relative;
+            > img{
+                position: absolute;
+                opacity: 0;
+                transition: all 0.3s linear;
+            }
+        }
+        & img, #carousel-image{
+            width: 81px;
+            height: 71px;
+            object-fit: cover;
         }
     }
 }
@@ -462,6 +401,7 @@ b{
         display: flex;
         justify-content: space-between;
         margin: 5.3vh 0 12vh;
+        gap: 20px;
     }
 }
 
@@ -475,28 +415,7 @@ b{
 }
 
 // LIGHTBOX PREVIEW //
-.lightbox__preview{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .6);
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    & i{
-        position: absolute;
-        color: white;
-        font-size: 36px;
-    }
-    &--reference, &--categorie{
-        position: absolute;
-        bottom: 0;
-        padding: 12px 17px;
-        color: white;
-    }
-    &--categorie{
-        right: 0;
-    }
-}
+
 
 .fa-eye{ // ICONE OEIL
     top: 47%;
@@ -514,7 +433,7 @@ b{
 
 // SUITE //
 .single-image{
-    width: 564px;
+    width: 100%;
     height: 495px;
     position: relative;
     & img{
@@ -542,26 +461,26 @@ b{
     display: none;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 0.5s forwards;
     & img{
         width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
     &__content{
-        width: 50vw;
         display: flex;
         flex-direction: column;
         &--infos{
             display: flex;
+            margin-top: 1.4vw;
             justify-content: space-between;
         }
         &--reference, &--categorie{
             color: white;
         }
         &--image{
-            overflow: auto;
-            max-height: 80vh;
-            &::-webkit-scrollbar{
-                display: none;
-            }
+            height: 70vh;
+            width: fit-content;
         }
     }
     &__close{
@@ -603,6 +522,38 @@ b{
             content: "\f178";
         }
     }
+    &__preview{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .6);
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        & i{
+            position: absolute;
+            color: white;
+            font-size: 36px;
+        }
+        &--reference, &--categorie{
+            position: absolute;
+            bottom: 0;
+            padding: 12px 17px;
+            color: white;
+        }
+        &--categorie{
+            right: 0;
+        }
+    }
+}
+
+// VIE PRIVEE //
+
+.entry-content{
+    padding: 3vw 10vw;
+}
+
+.wp-block-heading{
+    margin: 1vw 0;
 }
 
 // ANIMATIONS //
@@ -637,6 +588,17 @@ b{
     }
     to{
         transform: translateX(1000px);
+    }
+}
+@keyframes burger_open{
+    0%{
+        scale: 1;
+    }
+    50%{
+        scale: 0.8;
+    }
+    100%{
+        scale: 1;
     }
 }
 @keyframes filter_oppening {

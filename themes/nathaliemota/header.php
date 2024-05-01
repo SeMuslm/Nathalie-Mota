@@ -9,7 +9,6 @@
 
 <body>
     <header id="header">
-        <div class="arriereblanc"></div>
         <a href="/"><img src="<?php echo get_template_directory_uri() . '/images/logo.png'; ?>" alt="Logo du site Nathalie Mota"/></a>           
         <?php
         wp_nav_menu([

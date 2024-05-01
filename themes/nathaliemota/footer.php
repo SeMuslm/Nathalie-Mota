@@ -4,9 +4,10 @@
         'theme_location' => 'footer',
     ]);
     ?>
-    <?php get_template_part( 'templates_part/modale_contact' ); ?>
-    <?php wp_footer(); ?>
-    <?php echo get_template_part('templates_part/lightbox') ?>
-    <script src="/js/lightbox.js"></script>
+    <?php get_template_part( 'templates_part/modale_contact' );
+    get_template_part('templates_part/lightbox');
+    wp_footer();
+    ?>
+    
 </footer>
 </body>

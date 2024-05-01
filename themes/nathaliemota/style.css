@@ -32,7 +32,7 @@ h2, h3, .description {
 
 h1 {
   font-weight: 700;
-  font-size: 96px;
+  font-size: clamp(0.75rem, 0.2rem + 5.8333vw, 6rem) !important;
   color: transparent;
   -webkit-text-stroke: 2px white;
 }
@@ -114,10 +114,6 @@ a, a:visited {
   color: black;
 }
 
-.arriereblanc {
-  display: none;
-}
-
 #menu_burger {
   display: none;
 }
@@ -151,8 +147,7 @@ a, a:visited {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
   grid-gap: 20px;
 }
 
@@ -163,8 +158,8 @@ a, a:visited {
 #select-container-left {
   display: flex;
   flex-direction: inherit;
-  justify-content: space-between;
   width: 48%;
+  gap: 36px;
 }
 #select-container-right {
   display: flex;
@@ -172,40 +167,8 @@ a, a:visited {
   justify-content: flex-end;
   width: 52%;
 }
-#select-container .select-container__filtre {
-  position: relative;
-  width: 260px;
-  height: 42px;
-}
-#select-container .select-container__filtre > label {
-  position: absolute;
-  z-index: 1;
-  padding: 12px 0 12px 18px;
-  font-weight: 500;
-  font-size: 12px;
-  color: #313144;
-  text-transform: uppercase;
-}
 #select-container select {
   width: 260px;
-  height: 42px;
-  border: 1.3px solid #B8BBC2;
-  border-radius: 8px;
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 12px;
-  padding: 0 18px;
-  text-transform: uppercase;
-  position: relative;
-}
-#select-container option {
-  text-transform: none;
-}
-
-select {
-  -webkit-appearance: none !important;
-     -moz-appearance: none !important;
-          appearance: none !important;
 }
 
 .select2-dropdown {
@@ -215,7 +178,6 @@ select {
 .select2-selection {
   display: flex !important;
   align-items: center !important;
-  width: 260px;
   height: 42px !important;
   border: 1.3px solid #B8BBC2 !important;
   border-radius: 8px !important;
@@ -245,7 +207,6 @@ select {
   font-weight: 500;
   font-size: 12px;
   color: #313144 !important;
-  transition: all 0.3s;
 }
 .select2-results__option:hover {
   background-color: #FFD6D6 !important;
@@ -347,7 +308,7 @@ b {
 }
 
 #form-submit, .bouton-contact, .bouton-contact-tri {
-  width: 272px;
+  width: 263px;
   height: 50px;
   font-size: 12px;
   background: #D8D8D8;
@@ -376,57 +337,6 @@ b {
   display: none;
 }
 
-.container-single {
-  display: flex;
-  flex-direction: column;
-}
-.container-single figure {
-  margin: 0 0 0 21px;
-}
-.container-single__middle {
-  display: flex;
-  padding-bottom: 31px;
-  position: relative;
-}
-.container-single__middle::after {
-  content: "";
-  position: absolute;
-  background-color: black;
-  width: 77vw;
-  height: 2px;
-  bottom: 0;
-}
-.container-single__middle--contact {
-  width: 50%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 37px;
-}
-.container-single__middle--contact button {
-  width: 272px;
-}
-.container-single__middle--carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-}
-.container-single__middle--carousel #carousel-image {
-  position: relative;
-}
-.container-single__middle--carousel #carousel-image > img {
-  position: absolute;
-  opacity: 0;
-  transition: all 1s linear;
-}
-.container-single__middle--carousel img, .container-single__middle--carousel #carousel-image {
-  width: 81px;
-  height: 71px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 #single {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -445,6 +355,7 @@ b {
   justify-content: flex-end;
 }
 #single-left__desc {
+  position: relative;
   gap: 2vh;
   border-bottom: 2px solid black;
   padding-bottom: 3vh;
@@ -462,6 +373,29 @@ b {
 }
 #single-right__photo {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#single-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+#single-carousel #carousel-image {
+  position: relative;
+}
+#single-carousel #carousel-image > img {
+  position: absolute;
+  opacity: 0;
+  transition: all 0.3s linear;
+}
+#single-carousel img, #single-carousel #carousel-image {
+  width: 81px;
+  height: 71px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #single-photos-apparentees {
@@ -472,6 +406,7 @@ b {
   display: flex;
   justify-content: space-between;
   margin: 5.3vh 0 12vh;
+  gap: 20px;
 }
 
 .fleches {
@@ -482,29 +417,6 @@ b {
 
 #fleche-droite, #fleche-gauche {
   font-size: 24px;
-}
-
-.lightbox__preview {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.lightbox__preview i {
-  position: absolute;
-  color: white;
-  font-size: 36px;
-}
-.lightbox__preview--reference, .lightbox__preview--categorie {
-  position: absolute;
-  bottom: 0;
-  padding: 12px 17px;
-  color: white;
-}
-.lightbox__preview--categorie {
-  right: 0;
 }
 
 .fa-eye {
@@ -522,7 +434,7 @@ b {
 }
 
 .single-image {
-  width: 564px;
+  width: 100%;
   height: 495px;
   position: relative;
 }
@@ -547,28 +459,30 @@ b {
   display: none;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.5s forwards;
 }
 .lightbox img {
   width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .lightbox__content {
-  width: 50vw;
   display: flex;
   flex-direction: column;
 }
 .lightbox__content--infos {
   display: flex;
+  margin-top: 1.4vw;
   justify-content: space-between;
 }
 .lightbox__content--reference, .lightbox__content--categorie {
   color: white;
 }
 .lightbox__content--image {
-  overflow: auto;
-  max-height: 80vh;
-}
-.lightbox__content--image::-webkit-scrollbar {
-  display: none;
+  height: 70vh;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .lightbox__close {
   font-size: 22px;
@@ -609,6 +523,36 @@ b {
 .lightbox__next::before {
   content: "\f178";
 }
+.lightbox__preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.lightbox__preview i {
+  position: absolute;
+  color: white;
+  font-size: 36px;
+}
+.lightbox__preview--reference, .lightbox__preview--categorie {
+  position: absolute;
+  bottom: 0;
+  padding: 12px 17px;
+  color: white;
+}
+.lightbox__preview--categorie {
+  right: 0;
+}
+
+.entry-content {
+  padding: 3vw 10vw;
+}
+
+.wp-block-heading {
+  margin: 1vw 0;
+}
 
 @keyframes fadeIn {
   from {
@@ -640,6 +584,17 @@ b {
   }
   to {
     transform: translateX(1000px);
+  }
+}
+@keyframes burger_open {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 0.8;
+  }
+  100% {
+    scale: 1;
   }
 }
 @keyframes filter_oppening {
